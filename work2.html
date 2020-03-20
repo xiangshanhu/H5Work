@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>skinchange</title>
+    <style>
+        
+        
+         ul li{
+             float:left;
+             height:20px;
+             width:20px;
+             margin-left: 20px;
+             margin-top: 20px;
+             list-style:none;  
+             }
+         #color0{
+             background-color: grey;
+         }
+         #color1{
+             background-color: indianred;
+         }    
+         #color2{
+             background-color:lightgreen;
+         }
+         #color3{
+             background-color:orange;
+         }
+         #color4{
+             background-color:yellow;
+         }
+         #color5{
+             background-color:blue;
+         }
+         div{
+            
+            float: left;
+            position: relative;
+            top: 5px;
+            left: 20px;
+
+         }
+         ul{
+             height: 40px;
+         }
+         fieldset{
+             background-color: ;
+             height: 200px;
+             width: 800px;
+         }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend style="color: red;font-family: 黑体 ;font-size: larger;">网页换肤</legend>
+        <ul id="skin">
+            <li id="color0" title="0"></li>
+            <li id="color1" title="1"></li>
+            <li id="color2" title="2"></li>
+            <li id="color3" title="3"></li>
+            <li id="color4" title="4"></li>
+            <li id="color5" title="5"></li>
+        </ul>
+        <div id="content" >
+            <p>LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，</p>
+            该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。
+        </div>
+    </fieldset>
+    
+    
+</body>
+<script>
+    window.onload = function(){
+     
+        if(!window.localStorage){
+            alert("用户浏览器不支持LocalStorage！！");
+        }
+        else{
+            var l = document.getElementsByTagName("li");     
+            var m = localStorage.getItem("keyId");
+            var div1 = document.getElementById("content");
+            
+            for(var i = 0;i<6;i++){
+                var n = Number(m);
+                if(i == n){
+                    l[i].setAttribute("Id","color" + n);
+                    l[i].style.marginTop = 10 + "px";
+                    div1.setAttribute("id", "colors" + n);
+                }
+            }
+        for(var i = 0;i<6;i++){
+            l[i].onclick = function(){
+                var p= parseInt(this.getAttribute("title"));
+                var q= this.getAttribute("id");
+                div1.setAttribute("id", q);
+                for(var j = 0;j<6;j++){
+                    if(j!=p){
+                        l[j].style.marginTop = 20 + "px";
+                    }
+                    l[p].style.marginTop = 10 + "px";
+                }
+                localStorage.setItem("keyId", p);         
+            }
+        }
+            
+        }
+    }
+</script>
+</html>   
